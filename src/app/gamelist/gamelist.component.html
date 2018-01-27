@@ -1,5 +1,6 @@
-<div *ngIf="game.enabled">
+<div *ngIf="game.enabled" >
 
   {{game.name}}
 
+  <a routerLink="/game/{{game.slug}}">play</a>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+
 import { Category } from '../category';
 import { CategoryService } from '../category.service';
 
@@ -12,7 +14,9 @@ export class CategoriesComponent implements OnInit {
   selectedCategory: Category;
   categories: Category[];
 
-  constructor(private categoryService: CategoryService) {
+  constructor(
+    private location: Location,
+    private categoryService: CategoryService) {
     this.selectedCategory = null;
   }
 

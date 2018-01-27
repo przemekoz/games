@@ -6,7 +6,7 @@ import { GameviewComponent } from './gameview/gameview.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'list/:id', component: ListComponent },
+  { path: 'list/:slug', component: ListComponent },
   { path: 'game/:id', component: GameviewComponent },
 ];
 

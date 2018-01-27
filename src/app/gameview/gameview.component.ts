@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Game } from '../game';
 import { GameService } from '../game.service';
 
@@ -11,7 +14,11 @@ export class GameviewComponent implements OnInit {
 
   game: Game;
 
-  constructor(private gameService: GameService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private gameService: GameService,
+    private location: Location
+  ) { }
 
   ngOnInit() {
     this.getGame();
@@ -19,8 +26,13 @@ export class GameviewComponent implements OnInit {
 
   getGame(): void {
     // Get game from url id
-    this.gameService.getGame('kaka')
+    const id = this.route.snapshot.paramMap.get('id');
+    this.gameService.getGame(id)
       .subscribe(game => this.game = game);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }
