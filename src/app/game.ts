@@ -12,3 +12,13 @@ export class Timezone {
     timezone_type: number;
     timezone: string;
 }
+
+export class GameList {
+    games: Game[];
+    total: number;
+    _embedded: Embedded;
+}
+
+class Embedded {
+    games: Game[];
+}

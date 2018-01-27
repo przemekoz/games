@@ -1,5 +1,21 @@
-<div *ngFor="let game of games">
-  
-  <app-gamelist [game]="game"></app-gamelist>
+{{title}}
 
+<div *ngFor="let game of games">
+  <app-gamelist [game]="game"></app-gamelist>
+</div>
+
+<div *ngIf="games">
+  <a (click)="first()">&lt;&lt;</a>
+  <a (click)="prev()">&lt;</a>
+
+  <label>Page:
+    <input [(ngModel)]="page" (keyup)="goToPage()">
+  </label>
+
+  <a (click)="next()">&gt;</a>
+  <a (click)="last()">&gt;&gt;</a>
+</div>
+
+<div *ngIf="!loaded">
+  (spinner)
 </div>

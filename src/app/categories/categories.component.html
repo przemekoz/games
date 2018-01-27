@@ -4,7 +4,7 @@
 
 <ul class="categories">
   <li *ngFor="let category of categories"
-    (click)="onSelect(category)" 
+    (click)="onSelect(category)"
     [class.selected]="category === selectedCategory">  
     <a [routerLink]="['/list', category.slug]">{{category.name}}</a>
   </li>

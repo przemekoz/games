@@ -1,16 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Game } from './game';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+
+import { Game, GameList } from './game';
+import { ListParam } from './listparam';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Accept-Language': 'en-GB', 'CherryTech-Brand': 'cherrycasino.desktop' })
+};
 
 @Injectable()
 export class GameService {
 
-  constructor() { }
+  private gameUrl = 'https://staging-frontapi.cherrytech.com';
 
-  getGames(slug: string): Observable<Game[]> {
-    console.log('Game service: ' + slug);
-    return of([
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  getGames(param: ListParam): Observable<GameList> {
+    console.log('Game service: ', param);
+
+    // Mock !
+    const games = [
       {
         id: 'microgaming-thunderstruck-ii',
         name: 'Thunderstruck II',
@@ -191,7 +205,33 @@ export class GameService {
           timezone: '+00:00'
         }
       },
-    ]);
+    ];
+
+    // return this.http.get('/someUrl')
+    // .map(res => res.json()).publishLast().refCount();
+
+    // // create the request, store the `Observable` for subsequent subscribers
+    // this.observable = this.http.get(this.url, {
+    //   headers: headers
+    // })
+    // .map(response =>  tets).share();
+
+    const start = param.page * param.max;
+    const stop = start + param.max;
+
+    // return this.http.get<GameList>(`${this.gameUrl}/games?page=${param.page + 1}&page_size=${param.max}`, httpOptions)
+    return this.http.get<GameList>(`${this.gameUrl}/games`, httpOptions)
+    .pipe(
+      map(result => {
+        return {
+          games: result._embedded.games.slice(start, stop),
+          // total: result.total_items
+          total: 50
+        };
+      }),
+      tap(result => console.log('Game Service - retriving games ok')),
+      catchError(console.log('Game Service - retriving games fail')),
+    );
   }
 
   getGame(id: string): Observable<Game> {
@@ -209,4 +249,5 @@ export class GameService {
     });
   }
 
+  
 }
