@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Game } from './game';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class GameService {
 
   constructor() { }
 
-  getGames(): Game[] {
-    return [
+  getGames(): Observable<Game[]> {
+    return of([
       {
         id: 'microgaming-thunderstruck-ii',
         name: 'Thunderstruck II',
@@ -44,11 +46,11 @@ export class GameService {
           timezone: '+00:00'
         }
       }
-    ];
+    ]);
   }
 
-  getGame(id: string): Game {
-    return {
+  getGame(id: string): Observable<Game> {
+    return of({
       id: 'microgaming-thunderstruck-ii',
       name: 'Thunderstruck II',
       slug: 'thunderstruck-ii',
@@ -59,7 +61,7 @@ export class GameService {
         timezone_type: 1,
         timezone: '+00:00'
       }
-    };
+    });
   }
 
 }

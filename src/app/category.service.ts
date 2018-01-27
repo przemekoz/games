@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Category } from './category';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class CategoryService {
 
   constructor() { }
 
-  getCategories(): Category[] {
-    return [
+  getCategories(): Observable<Category[]> {
+    return of([
       {
         order: 0,
         name: 'Popular Games',
@@ -23,7 +25,7 @@ export class CategoryService {
         name: 'Table Games',
         slug: 'table-games',
       }
-    ];
+    ]);
   }
 
 }

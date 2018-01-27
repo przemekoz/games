@@ -15,7 +15,8 @@ export class GameviewComponent implements OnInit {
 
   ngOnInit() {
     // Get game from url id
-    this.game = this.gameService.getGame('kaka');
+    this.gameService.getGame('kaka')
+      .subscribe(game => this.game = game);
   }
 
 }
