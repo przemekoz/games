@@ -14,6 +14,10 @@ export class GameviewComponent implements OnInit {
   constructor(private gameService: GameService) { }
 
   ngOnInit() {
+    this.getGame();
+  }
+
+  getGame(): void {
     // Get game from url id
     this.gameService.getGame('kaka')
       .subscribe(game => this.game = game);

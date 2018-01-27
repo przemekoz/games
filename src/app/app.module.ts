@@ -8,6 +8,8 @@ import { CategoryService } from './category.service';
 import { GameService } from './game.service';
 import { GameviewComponent } from './gameview/gameview.component';
 import { GamelistComponent } from './gamelist/gamelist.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { ListComponent } from './list/list.component';
 
 
 @NgModule({
@@ -15,10 +17,12 @@ import { GamelistComponent } from './gamelist/gamelist.component';
     AppComponent,
     CategoriesComponent,
     GameviewComponent,
-    GamelistComponent
+    GamelistComponent,
+    ListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [CategoryService, GameService],
   bootstrap: [AppComponent]
