@@ -6,3 +6,9 @@
 </div>
 
 <app-categories></app-categories>
+
+<div *ngFor="let game of games">
+  
+  <app-gamelist [game]="game"></app-gamelist>
+
+</div>
