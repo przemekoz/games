@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../game';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-gameview',
@@ -10,22 +11,11 @@ export class GameviewComponent implements OnInit {
 
   game: Game;
 
-  constructor() { }
+  constructor(private gameService: GameService) { }
 
   ngOnInit() {
     // Get game from url id
-    this.game = {
-      id: 'microgaming-thunderstruck-ii',
-      name: 'Thunderstruck II',
-      slug: 'thunderstruck-ii',
-      enabled: true,
-      description: 'Thunderstruck II ...',
-      created_at: {
-        date: '2013-08-06 14:01:58.000000',
-        timezone_type: 1,
-        timezone: '+00:00'
-      }
-    };
+    this.game = this.gameService.getGame('kaka');
   }
 
 }

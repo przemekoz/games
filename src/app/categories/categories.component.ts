@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../category';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-categories',
@@ -11,7 +12,7 @@ export class CategoriesComponent implements OnInit {
   selectedCategory: Category;
   categories: Category[];
 
-  constructor() {
+  constructor(private categoryService: CategoryService) {
     this.selectedCategory = null;
   }
 
@@ -21,23 +22,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     // Get categories
-    this.categories = [
-      {
-        order: 0,
-        name: 'Popular Games',
-        slug: 'popular-games',
-      },
-      {
-        order: 1,
-        name: 'Video slots',
-        slug: 'video-slots',
-      },
-      {
-        order: 2,
-        name: 'Table Games',
-        slug: 'table-games',
-      }
-    ];
+    this.categories = this.categoryService.getCategories();
   }
 
 }
