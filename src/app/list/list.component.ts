@@ -82,7 +82,6 @@ export class ListComponent implements OnInit {
     this.gameService.getGames(params)
       .subscribe(result => {
         this.loaded = true;
-        console.log('List component', result)
         this.games = result.games;
         this.total = result.total;
         this.countOfPage = Math.floor(this.total / this.max);

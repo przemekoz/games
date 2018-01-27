@@ -1,6 +1,10 @@
-<div *ngIf="game.enabled" >
+<div *ngIf="game.enabled">
+
+  <span class="image-placeholder">
+    game image
+  </span>
 
   {{game.name}}
 
-  <a routerLink="/game/{{game.slug}}">play</a>
+  <button routerLink="/game/{{game.id}}">play</button>
 </div>

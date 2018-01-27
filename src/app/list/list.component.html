@@ -1,19 +1,19 @@
 {{title}}
 
-<div *ngFor="let game of games">
+<div *ngFor="let game of games" class="container">
   <app-gamelist [game]="game"></app-gamelist>
 </div>
 
-<div *ngIf="games">
-  <a (click)="first()">&lt;&lt;</a>
-  <a (click)="prev()">&lt;</a>
+<div *ngIf="games" class="container">
+  <button (click)="first()">&lt;&lt;</button>
+  <button (click)="prev()">&lt;</button>
 
   <label>Page:
     <input [(ngModel)]="page" (keyup)="goToPage()">
   </label>
 
-  <a (click)="next()">&gt;</a>
-  <a (click)="last()">&gt;&gt;</a>
+  <button (click)="next()">&gt;</button>
+  <button (click)="last()">&gt;&gt;</button>
 </div>
 
 <div *ngIf="!loaded">

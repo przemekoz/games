@@ -1,6 +1,8 @@
-<p>
-  gameview works!
-</p>
-{{game.name}}
+<div *ngIf="game && game.enabled">
 
-<a (click)="goBack()">back</a>
+  <img src="{{game.background}}" width="300" />
+
+  {{game.name}}
+  
+</div>
+<button (click)="goBack()">back</button>
