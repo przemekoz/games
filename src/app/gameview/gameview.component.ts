@@ -18,7 +18,11 @@ export class GameviewComponent implements OnInit {
     private route: ActivatedRoute,
     private gameService: GameService,
     private location: Location
-  ) { }
+  ) {
+    route.params.subscribe(params => {
+      this.getGame();
+    });
+  }
 
   ngOnInit() {
     this.getGame();

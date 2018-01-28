@@ -1,5 +1,5 @@
 li.selected {
-    background: green;
+    border: 1px solid grey;
 }
 
 li {

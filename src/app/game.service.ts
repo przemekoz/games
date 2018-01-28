@@ -37,15 +37,28 @@ export class GameService {
         catchError(console.log('Game Service - retriving games fail')),
       );
     } else {
-      return of({games: [], total: 0, _embedded: {games: []}});
+      return of({ games: [], total: 0, _embedded: { games: [] } });
     }
   }
 
   getGame(id: string): Observable<Game> {
-    return this.http.get<GameList>(`${this.gameUrl}/${id}`, httpOptions)
+    return this.http.get<Game>(`${this.gameUrl}/${id}`, httpOptions)
       .pipe(
       catchError(console.log('Game Service - retriving games fail')),
     );
   }
 
+  searchGames(term: string): Observable<Game[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http.get<Game>(`${this.gameUrl}?term=${term}`, httpOptions)
+      .pipe(
+      map(result => result._embedded.games.filter(item => {
+        return item.name.toLowerCase().indexOf(term.toLowerCase()) > -1;
+      }).slice(0, 5)),
+      catchError(console.log('Game Service - retriving games fail')),
+    );
+  }
 }

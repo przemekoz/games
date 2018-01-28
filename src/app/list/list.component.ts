@@ -24,12 +24,12 @@ export class ListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private gameService: GameService) {
-    route.params.subscribe(params => {
-      this.getGames();
-    });
-    this.max = 6;
-    this.page = 0;
-    this.loaded = false;
+      route.params.subscribe(params => {
+        this.getGames();
+      });
+      this.max = 6;
+      this.page = 0;
+      this.loaded = false;
   }
 
   ngOnInit() {

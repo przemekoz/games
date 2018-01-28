@@ -11,6 +11,7 @@ import { GameviewComponent } from './gameview/gameview.component';
 import { GamelistComponent } from './gamelist/gamelist.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ListComponent } from './list/list.component';
+import { GameSearchComponent } from './game-search/game-search.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ListComponent } from './list/list.component';
     CategoriesComponent,
     GameviewComponent,
     GamelistComponent,
-    ListComponent
+    ListComponent,
+    GameSearchComponent
   ],
   imports: [
     BrowserModule,
