@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 
@@ -12,7 +12,8 @@ import { GamelistComponent } from './gamelist/gamelist.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ListComponent } from './list/list.component';
 import { GameSearchComponent } from './game-search/game-search.component';
-
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,13 @@ import { GameSearchComponent } from './game-search/game-search.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [CategoryService, GameService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

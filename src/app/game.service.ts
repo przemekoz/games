@@ -28,24 +28,22 @@ export class GameService {
     if (!isNaN(start)) {
       return this.http.get<GameList>(`${this.listUrl}/${param.categorySlug}?page=${param.page + 1}&page_size=${param.max}`, httpOptions)
         .pipe(
-        map(result => {
-          return {
-            games: result._embedded.games.slice(start, stop),
-            total: result._embedded.games.length
-          };
-        }),
-        catchError(console.log('Game Service - retriving games fail')),
-      );
+          map(result => {
+            return {
+              games: result._embedded.games.slice(start, stop),
+              total: result._embedded.games.length,
+              _embedded: { games: [] }
+            };
+          }),
+          catchError(result => result)
+        );
     } else {
       return of({ games: [], total: 0, _embedded: { games: [] } });
     }
   }
 
   getGame(id: string): Observable<Game> {
-    return this.http.get<Game>(`${this.gameUrl}/${id}`, httpOptions)
-      .pipe(
-      catchError(console.log('Game Service - retriving games fail')),
-    );
+    return this.http.get<Game>(`${this.gameUrl}/${id}`, httpOptions);
   }
 
   searchGames(term: string): Observable<Game[]> {
@@ -58,7 +56,7 @@ export class GameService {
       map(result => result._embedded.games.filter(item => {
         return item.name.toLowerCase().indexOf(term.toLowerCase()) > -1;
       }).slice(0, 5)),
-      catchError(console.log('Game Service - retriving games fail')),
-    );
+      catchError(result => result)
+      );
   }
 }

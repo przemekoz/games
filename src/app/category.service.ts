@@ -17,11 +17,10 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.categoriesUrl, httpOptions)
+    return this.http.get<Category>(this.categoriesUrl, httpOptions)
       .pipe(
-      map(result => result._embedded.game_categories),
-      catchError(console.log('Game Service - retriving games fail')),
-    );
+        map(result => result._embedded.game_categories)
+      );
   }
 
 }

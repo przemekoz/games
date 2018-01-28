@@ -5,6 +5,7 @@ export class Game {
     description: string;
     created_at: Timezone;
     enabled: boolean;
+    _embedded: Embedded;
 }
 
 export class Timezone {
@@ -20,5 +21,5 @@ export class GameList {
 }
 
 class Embedded {
-    games: Game[];
+    games: any[];
 }

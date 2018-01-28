@@ -1,20 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
+  <h1 routerLink="/">
     Welcome to {{ title }}!
   </h1>
 </div>
 
-<app-game-search></app-game-search>
+<mat-grid-list cols="3">
+    
+    <mat-grid-tile [colspan]="1">
+      
+      <app-game-search></app-game-search>
+      <app-categories></app-categories>
+    
+    </mat-grid-tile>
+    
+    <mat-grid-tile  [colspan]="2">
 
-<div style="width: 33%; float: left">
-  
-  <app-categories></app-categories>
+      <router-outlet></router-outlet>
+    
+    </mat-grid-tile>    
 
-</div>
-<div style="width: 66%; float: left">
-  
-  <router-outlet></router-outlet>
-
-</div>
-<div style="clear:both"></div>
+  </mat-grid-list>

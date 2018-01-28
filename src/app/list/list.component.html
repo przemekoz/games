@@ -1,21 +1,21 @@
 {{title}}
 
-<div *ngFor="let game of games" class="container">
+<div *ngFor="let game of games" class="container" style="width: 100%">
   <app-gamelist [game]="game"></app-gamelist>
 </div>
 
-<div *ngIf="games" class="container">
-  <button (click)="first()">&lt;&lt;</button>
-  <button (click)="prev()">&lt;</button>
+<div *ngIf="games && games.length" class="container"  style="width: 100%">
+  <button mat-icon-button (click)="first()">&lt;&lt;</button>
+  <button mat-icon-button (click)="prev()">&lt;</button>
 
   <label>Page:
     <input [(ngModel)]="page" (keyup)="goToPage()">
   </label>
 
-  <button (click)="next()">&gt;</button>
-  <button (click)="last()">&gt;&gt;</button>
+  <button mat-icon-button (click)="next()">&gt;</button>
+  <button mat-icon-button (click)="last()">&gt;&gt;</button>
 </div>
 
 <div *ngIf="!loaded">
-  (spinner)
+    <mat-spinner></mat-spinner>
 </div>
