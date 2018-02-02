@@ -8,14 +8,14 @@ import { Game, GameList } from './game';
 import { ListParam } from './listparam';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Accept-Language': 'en-GB', 'CherryTech-Brand': 'cherrycasino.desktop' })
+  headers: new HttpHeaders({ 'Accept-Language': 'en-GB' })
 };
 
 @Injectable()
 export class GameService {
 
-  private gameUrl = 'https://staging-frontapi.cherrytech.com/games';
-  private listUrl = 'https://staging-frontapi.cherrytech.com/game-categories';
+  private gameUrl = '/games';
+  private listUrl = '/game-categories';
 
   constructor(
     private http: HttpClient

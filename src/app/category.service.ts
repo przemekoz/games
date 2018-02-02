@@ -6,13 +6,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Accept-Language': 'en-GB', 'CherryTech-Brand': 'cherrycasino.desktop' })
+  headers: new HttpHeaders({ 'Accept-Language': 'en-GB' })
 };
 
 @Injectable()
 export class CategoryService {
 
-  private categoriesUrl = 'https://staging-frontapi.cherrytech.com/game-categories';
+  private categoriesUrl = '/game-categories';
 
   constructor(private http: HttpClient) { }
 
