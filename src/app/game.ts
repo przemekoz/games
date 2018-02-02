@@ -1,6 +1,5 @@
 export class Game {
     id: string;
-    slug: string;
     name: string;
     description: string;
     created_at: Timezone;

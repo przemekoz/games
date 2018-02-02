@@ -12,8 +12,8 @@ import { GamelistComponent } from './gamelist/gamelist.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ListComponent } from './list/list.component';
 import { GameSearchComponent } from './game-search/game-search.component';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AppMaterialModule } from './app-material.module'; 
 
 @NgModule({
   declarations: [
@@ -30,8 +30,7 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
     FormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule
+    AppMaterialModule
   ],
   providers: [CategoryService, GameService],
   bootstrap: [AppComponent],

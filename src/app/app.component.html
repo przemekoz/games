@@ -5,19 +5,22 @@
   </h1>
 </div>
 
+<mat-toolbar color="primary">
+  Welcome to {{ title }}!
+</mat-toolbar>
+
 <mat-grid-list cols="3">
-    
-    <mat-grid-tile [colspan]="1">
-      
-      <app-game-search></app-game-search>
-      <app-categories></app-categories>
-    
-    </mat-grid-tile>
-    
-    <mat-grid-tile  [colspan]="2">
+  <mat-grid-tile [colspan]="1">
 
-      <router-outlet></router-outlet>
-    
-    </mat-grid-tile>    
+    <app-game-search></app-game-search>
+    <app-categories></app-categories>
 
-  </mat-grid-list>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2">
+
+    <router-outlet></router-outlet>
+
+  </mat-grid-tile>
+
+</mat-grid-list>
