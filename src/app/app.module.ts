@@ -5,17 +5,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { CategoryService } from './category.service';
-import { GameService } from './game.service';
+import { CategoryService } from './services/category.service';
+import { GameService } from './services/game.service';
 import { GameviewComponent } from './gameview/gameview.component';
 import { GamelistComponent } from './gamelist/gamelist.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ListComponent } from './list/list.component';
 import { GameSearchComponent } from './game-search/game-search.component';
 import { AppMaterialModule } from './app-material.module';
+import { GamesListComponent } from './lists/gameslist.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +24,8 @@ import { AppMaterialModule } from './app-material.module';
         GameviewComponent,
         GamelistComponent,
         ListComponent,
-        GameSearchComponent
+        GameSearchComponent,
+        GamesListComponent
     ],
     imports: [
         BrowserModule,
@@ -33,7 +34,7 @@ import { AppMaterialModule } from './app-material.module';
         HttpClientModule,
         NoopAnimationsModule,
         AppMaterialModule,
-        LayoutModule
+        LayoutModule,
     ],
     providers: [CategoryService, GameService],
     bootstrap: [AppComponent],

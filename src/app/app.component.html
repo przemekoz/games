@@ -3,7 +3,7 @@
 
         <mat-toolbar color="primary">Categories</mat-toolbar>
         <mat-nav-list>
-            <a mat-list-item *ngFor="let category of categories; let i = index" [routerLink]="['/category', category.id]" routerLinkActive="active-category">
+            <a mat-list-item *ngFor="let category of categories; let i = index" [routerLink]="['/list', category.id]" routerLinkActive="active-category">
                 {{i + 1}} - {{category.name}}
             </a>
         </mat-nav-list>
@@ -25,6 +25,7 @@
 
         <app-game-search></app-game-search>
         <app-categories></app-categories>
+
         <router-outlet></router-outlet>
 
     </mat-sidenav-content>

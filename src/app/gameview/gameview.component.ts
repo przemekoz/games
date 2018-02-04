@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Game } from '../game';
-import { GameService } from '../game.service';
+import { Game } from '../interfaces/game';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'app-gameview',

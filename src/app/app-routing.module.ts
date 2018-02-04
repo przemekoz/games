@@ -3,10 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ListComponent } from './list/list.component';
 import { GameviewComponent } from './gameview/gameview.component';
+import { GamesListComponent } from './lists/gameslist.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'list/:slug', component: ListComponent },
+  { path: 'list/:slug', component: GamesListComponent },
   { path: 'game/:id', component: GameviewComponent },
 ];
 

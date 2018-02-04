@@ -8,8 +8,8 @@ import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 
-import { Game } from '../game';
-import { GameService } from '../game.service';
+import { Game } from '../interfaces/game';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'app-game-search',

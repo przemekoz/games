@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Game } from '../game';
-import { ListParam } from '../listparam';
-import { GameService } from '../game.service';
+import ListElement from '../interfaces/listelement';
+import ListParam from '../interfaces/listparam';
 
 @Component({
   selector: 'app-list',
@@ -12,7 +11,7 @@ import { GameService } from '../game.service';
 })
 export class ListComponent implements OnInit {
 
-  games: Game[];
+  elements: ListElement[];
 
   max: number;
   page: number;
@@ -22,10 +21,9 @@ export class ListComponent implements OnInit {
   loaded: boolean;
 
   constructor(
-    private route: ActivatedRoute,
-    private gameService: GameService) {
+    private route: ActivatedRoute) {
       route.params.subscribe(params => {
-        this.getGames();
+        this.getElements();
       });
       this.max = 6;
       this.page = 0;
@@ -33,34 +31,34 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getGames();
+    this.getElements();
   }
 
   first(): void {
     if (this.page > 0) {
       this.page = 0;
-      this.getGames();
+      this.getElements();
     }
   }
 
   prev(): void {
     if (this.page > 1) {
       this.page--;
-      this.getGames();
+      this.getElements();
     }
   }
 
   next(): void {
     if (this.page < this.countOfPage) {
       this.page++;
-      this.getGames();
+      this.getElements();
     }
   }
 
   last(): void {
     if (this.page < this.countOfPage) {
       this.page = this.countOfPage;
-      this.getGames();
+      this.getElements();
     }
   }
 
@@ -68,24 +66,23 @@ export class ListComponent implements OnInit {
     if (this.page < 0 || this.page > this.countOfPage) {
       this.page = 0;
     }
-    this.getGames();
+    this.getElements();
   }
 
-  getGames(): void {
+  getElements(): void {
     this.loaded = false;
-    const categorySlug = this.route.snapshot.paramMap.get('slug');
     const params: ListParam = {
-      categorySlug: categorySlug,
       max: this.max,
-      page: this.page
+      page: this.page,
+      sort: ''
     };
-    this.gameService.getGames(params)
-      .subscribe(result => {
-        this.loaded = true;
-        this.games = result.games;
-        this.total = result.total;
-        this.countOfPage = Math.floor(this.total / this.max);
-      });
+    // this.gameService.getGames(params)
+    //   .subscribe(result => {
+    //     this.loaded = true;
+    //     this.elements = result.games;
+    //     this.total = result.total;
+    //     this.countOfPage = Math.floor(this.total / this.max);
+    //   });
   }
 
 }

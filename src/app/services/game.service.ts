@@ -4,8 +4,8 @@ import { of } from 'rxjs/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Game, GameList } from './game';
-import { ListParam } from './listparam';
+import { Game, GameList } from '../interfaces/game';
+import ListParam from '../interfaces/listparam';
 
 @Injectable()
 export class GameService {

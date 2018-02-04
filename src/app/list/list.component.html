@@ -1,20 +1,22 @@
 {{title}}
 
-<div *ngFor="let game of games" class="container" style="width: 100%">
-  <app-gamelist [game]="game"></app-gamelist>
+<div *ngFor="let element of elements" class="container" style="width: 100%">
+  <!-- <app-gamelist [game]="game"></app-gamelist> -->
 </div>
 
-<div *ngIf="games && games.length" class="container"  style="width: 100%">
+<div class="container"  style="width: 100%">
   <button mat-icon-button (click)="first()">&lt;&lt;</button>
   <button mat-icon-button (click)="prev()">&lt;</button>
 
   <label>Page:
     <input [(ngModel)]="page" (keyup)="goToPage()">
-  </label>
+  </label> of {{totalPages}}
 
   <button mat-icon-button (click)="next()">&gt;</button>
   <button mat-icon-button (click)="last()">&gt;&gt;</button>
 </div>
+
+{{total}}
 
 <div *ngIf="!loaded">
     <mat-spinner></mat-spinner>
