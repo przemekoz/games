@@ -2,7 +2,7 @@ export class Game {
     id: string;
     name: string;
     description: string;
-    created_at: Timezone;
+    // created_at: Timezone;
     enabled: boolean;
 }
 

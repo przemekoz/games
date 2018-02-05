@@ -1,0 +1,10 @@
+<div *ngIf="data.enabled">
+
+    <span class="image-placeholder">
+        game image
+    </span>
+
+    {{data.name}}
+
+    <button routerLink="/game/{{data.id}}">play</button>
+</div>

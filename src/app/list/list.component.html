@@ -1,19 +1,23 @@
 {{title}}
 
 <div *ngFor="let element of elements" class="container" style="width: 100%">
-  <!-- <app-gamelist [game]="game"></app-gamelist> -->
+    <!-- <app-gamelist [game]="game"></app-gamelist> -->
+    <app-listelement [componentName]="componentName" [data]="element"></app-listelement>
+    {{element|json}}
 </div>
 
-<div class="container"  style="width: 100%">
-  <button mat-icon-button (click)="first()">&lt;&lt;</button>
-  <button mat-icon-button (click)="prev()">&lt;</button>
+Type: {{type|json}}
 
-  <label>Page:
-    <input [(ngModel)]="page" (keyup)="goToPage()">
-  </label> of {{totalPages}}
+<div class="container" style="width: 100%">
+    <button mat-icon-button (click)="first()">&lt;&lt;</button>
+    <button mat-icon-button (click)="prev()">&lt;</button>
 
-  <button mat-icon-button (click)="next()">&gt;</button>
-  <button mat-icon-button (click)="last()">&gt;&gt;</button>
+    <label>Page:
+        <input [(ngModel)]="page" (keyup)="goToPage()">
+    </label> of {{totalPages}}
+
+    <button mat-icon-button (click)="next()">&gt;</button>
+    <button mat-icon-button (click)="last()">&gt;&gt;</button>
 </div>
 
 {{total}}

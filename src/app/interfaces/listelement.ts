@@ -1,3 +1,3 @@
 export default interface ListElement {
-    key: string;
+    data: any;
 }

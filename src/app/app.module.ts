@@ -9,13 +9,16 @@ import { AppComponent } from './app.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryService } from './services/category.service';
 import { GameService } from './services/game.service';
-import { GameviewComponent } from './gameview/gameview.component';
-import { GamelistComponent } from './gamelist/gamelist.component';
+import { GameviewComponent } from './components/gameview/gameview.component';
+import { GamelistComponent } from './components/gamelist/gamelist.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ListComponent } from './list/list.component';
 import { GameSearchComponent } from './game-search/game-search.component';
 import { AppMaterialModule } from './app-material.module';
 import { GamesListComponent } from './lists/gameslist.component';
+import { ListelementComponent } from './components/listelement/listelement.component';
+
+import { ListelementDirective } from './directives/listelement.directive';
 
 @NgModule({
     declarations: [
@@ -25,7 +28,9 @@ import { GamesListComponent } from './lists/gameslist.component';
         GamelistComponent,
         ListComponent,
         GameSearchComponent,
-        GamesListComponent
+        GamesListComponent,
+        ListelementComponent,
+        ListelementDirective
     ],
     imports: [
         BrowserModule,
@@ -37,6 +42,7 @@ import { GamesListComponent } from './lists/gameslist.component';
         LayoutModule,
     ],
     providers: [CategoryService, GameService],
+    entryComponents: [GamelistComponent],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
