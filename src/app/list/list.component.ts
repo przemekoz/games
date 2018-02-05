@@ -71,7 +71,6 @@ export class ListComponent implements OnInit {
     }
 
     getElements(): void {
-        console.log('List: ', this.elements)
         this.loaded = false;
         const params: ListParam = {
             max: this.max,

@@ -7,25 +7,24 @@ import { COMPONENTS } from './listelements.conf';
     selector: 'app-listelement',
     template: `<div>
     <h3>List element</h3>
-    <ng-template listelement-host></ng-template>
+    <ng-template appListElementHost></ng-template>
   </div>`
 })
 export class ListelementComponent implements AfterViewInit {
     @Input() data: any;
     @Input() componentName: string;
-
-
     @ViewChild(ListelementDirective) listelementHost: ListelementDirective;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver, private errorHandler: ErrorHandler) { }
 
     ngAfterViewInit() {
-        const elements = COMPONENTS.find(item => item.name === this.componentName);
-        if (elements) {
-            let componentFactory = this.componentFactoryResolver.resolveComponentFactory(elements.component);
-            let viewContainerRef = this.listelementHost.viewContainerRef;
+        const element = COMPONENTS.find(item => item.name === this.componentName);
+        if (element) {
+
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(element.component);
+            const viewContainerRef = this.listelementHost.viewContainerRef;
             viewContainerRef.clear();
-            let componentRef = viewContainerRef.createComponent(componentFactory);
+            const componentRef = viewContainerRef.createComponent(componentFactory);
             (<ListElement>componentRef.instance).data = this.data;
         } else {
             this.errorHandler.handleError(`No configuration for component: ${this.componentName}`);

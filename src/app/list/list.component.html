@@ -1,12 +1,8 @@
 {{title}}
 
 <div *ngFor="let element of elements" class="container" style="width: 100%">
-    <!-- <app-gamelist [game]="game"></app-gamelist> -->
-    <app-listelement [componentName]="componentName" [data]="element"></app-listelement>
-    {{element|json}}
+    <app-listelement componentName="game" [data]="element"></app-listelement>
 </div>
-
-Type: {{type|json}}
 
 <div class="container" style="width: 100%">
     <button mat-icon-button (click)="first()">&lt;&lt;</button>

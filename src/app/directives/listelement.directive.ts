@@ -1,7 +1,7 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-    selector: '[listelement-host]',
+    selector: '[appListElementHost]',
 })
 export class ListelementDirective {
     constructor(public viewContainerRef: ViewContainerRef) { }
