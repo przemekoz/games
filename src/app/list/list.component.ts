@@ -7,7 +7,7 @@ import ListParam from '../interfaces/listparam';
 @Component({
     selector: 'app-list',
     templateUrl: './list.component.html',
-    styleUrls: ['./list.component.css']
+    styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
 

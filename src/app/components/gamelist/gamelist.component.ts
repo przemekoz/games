@@ -4,7 +4,7 @@ import ListElement from '../../interfaces/listelement';
 
 @Component({
     templateUrl: './gamelist.component.html',
-    styleUrls: ['./gamelist.component.css']
+    styleUrls: ['./gamelist.component.scss']
 })
 export class GamelistComponent implements ListElement {
 

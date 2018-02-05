@@ -5,8 +5,8 @@ import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 
 import {
-   debounceTime, distinctUntilChanged, switchMap
- } from 'rxjs/operators';
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
 
 import { Game } from '../interfaces/game';
 import { GameService } from '../services/game.service';
@@ -14,13 +14,13 @@ import { GameService } from '../services/game.service';
 @Component({
   selector: 'app-game-search',
   templateUrl: './game-search.component.html',
-  styleUrls: [ './game-search.component.css' ]
+  styleUrls: ['./game-search.component.scss']
 })
 export class GameSearchComponent implements OnInit {
   games$: Observable<Game[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService) { }
 
   // Push a search term into the observable stream.
   search(term: string): void {
