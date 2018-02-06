@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ListComponent } from './list/list.component';
+import { ListComponent } from './_core/list/list.component';
 import { GameviewComponent } from './components/gameview/gameview.component';
 import { GamesListComponent } from './lists/gameslist.component';
 

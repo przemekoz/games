@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit, ViewChild, ComponentFactoryResolver, Type, ErrorHandler } from '@angular/core';
-import { ListelementDirective } from '../../directives/listelement.directive';
+import { ListelementDirective } from '../directives/listelement.directive';
 import ListElement from '../../interfaces/listelement';
-import { COMPONENTS } from './listelements.conf';
+import { COMPONENTS } from '../../lists/listelements.conf';
 
 @Component({
     selector: 'app-listelement',

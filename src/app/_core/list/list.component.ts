@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import ListElement from '../interfaces/listelement';
-import ListParam from '../interfaces/listparam';
+import ListElement from '../../interfaces/listelement';
+import ListParam from '../../interfaces/listparam';
 
 @Component({
     selector: 'app-list',
