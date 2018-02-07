@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Type } from '@angular/core';
+import { Component, OnInit, Input, Type, ErrorHandler } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ListElement } from '../../interfaces/listelement';
@@ -24,30 +24,30 @@ export class ListComponent implements OnInit {
     service: ComponentListService;
 
     constructor(
-        private route: ActivatedRoute) {
-        if (this.componentName) {
-            route.params.subscribe(params => {
-                this.getElements();
-            });
-            this.max = 6;
-            this.page = 0;
-            this.loaded = false;
-            const element = COMPONENTS.find(item => item.name === this.componentName);
-            if (element && element.service) {
-                console.log(typeof element.service)
-                this.service = element.service;
-            }
-            else {
-                // log error Can't find element this.componentName in listelements.conf
-            }
-        }
-        else {
-            // log required this.componentName is not set
-        }
+        private route: ActivatedRoute,
+        private errorHandler: ErrorHandler) {
+        route.params.subscribe(params => {
+            this.getElements();
+        });
+        this.max = 6;
+        this.page = 0;
+        this.loaded = false;
     }
 
     ngOnInit() {
-        this.getElements();
+        if (this.componentName) {
+            const element = COMPONENTS.find(item => item.name === this.componentName);
+            if (element && element.service) {
+                this.service = new element.service;
+                this.getElements();
+            }
+            else {
+                this.errorHandler.handleError(`Can't find element ${this.componentName} in listelements.conf`);
+            }
+        }
+        else {
+            this.errorHandler.handleError(`this.componentName is not set`);
+        }
     }
 
     first(): void {
@@ -100,7 +100,8 @@ export class ListComponent implements OnInit {
                     this.countOfPage = Math.floor(this.total / this.max);
                 });
         } else {
-            // log service for component this.componentName is not available
+            // log
+            this.errorHandler.handleError(`service for component "${this.componentName}" is not available`);
         }
     }
 
