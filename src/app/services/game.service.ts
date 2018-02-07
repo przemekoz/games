@@ -5,14 +5,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Game, GameList } from '../interfaces/game';
-import ListParam from '../interfaces/listparam';
+import { ListParam } from '../interfaces/listparam';
+import { ComponentListService } from '../interfaces/componentListService';
 
 @Injectable()
-export class GameService {
+export class GameService implements ComponentListService {
 
     constructor(private http: HttpClient) { }
 
-    getGames(param: ListParam): Observable<GameList> {
+    getList(param: ListParam): Observable<GameList> {
         const start = param.page * param.max;
         const stop = start + param.max;
 

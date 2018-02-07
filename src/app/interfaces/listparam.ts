@@ -1,4 +1,4 @@
-export default class ListParam {
+export class ListParam {
     max: number;
     page: number;
     sort: string;

@@ -1,6 +1,8 @@
 import { Type } from '@angular/core';
+import { ComponentListService } from './componentListService';
 
-export default class DynamicListComponents {
+export class DynamicListComponents {
+    name: string;
     component: Type<any>;
-    name: string
+    service: ComponentListService;
 }

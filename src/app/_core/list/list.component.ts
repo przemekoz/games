@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Type } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import ListElement from '../../interfaces/listelement';
-import ListParam from '../../interfaces/listparam';
+import { ListElement } from '../../interfaces/listelement';
+import { ListParam } from '../../interfaces/listparam';
+import { ComponentListService } from '../../interfaces/componentListService';
+import { COMPONENTS } from '../../lists/listelements.conf';
 
 @Component({
     selector: 'app-list',
@@ -11,24 +13,37 @@ import ListParam from '../../interfaces/listparam';
 })
 export class ListComponent implements OnInit {
 
-    @Input() type: string;
-    @Input() elements: ListElement[];
+    @Input() componentName: string;
 
     max: number;
     page: number;
     total: number;
     countOfPage: number;
-
+    elements: ListElement[];
     loaded: boolean;
+    service: ComponentListService;
 
     constructor(
         private route: ActivatedRoute) {
-        route.params.subscribe(params => {
-            this.getElements();
-        });
-        this.max = 6;
-        this.page = 0;
-        this.loaded = false;
+        if (this.componentName) {
+            route.params.subscribe(params => {
+                this.getElements();
+            });
+            this.max = 6;
+            this.page = 0;
+            this.loaded = false;
+            const element = COMPONENTS.find(item => item.name === this.componentName);
+            if (element && element.service) {
+                console.log(typeof element.service)
+                this.service = element.service;
+            }
+            else {
+                // log error Can't find element this.componentName in listelements.conf
+            }
+        }
+        else {
+            // log required this.componentName is not set
+        }
     }
 
     ngOnInit() {
@@ -71,19 +86,22 @@ export class ListComponent implements OnInit {
     }
 
     getElements(): void {
-        this.loaded = false;
-        const params: ListParam = {
-            max: this.max,
-            page: this.page,
-            sort: ''
-        };
-        // this.gameService.getGames(params)
-        //   .subscribe(result => {
-        //     this.loaded = true;
-        //     this.elements = result.games;
-        //     this.total = result.total;
-        //     this.countOfPage = Math.floor(this.total / this.max);
-        //   });
+        if (this.service) {
+            this.loaded = false;
+            this.service.getList({
+                max: this.max,
+                page: this.page,
+                sort: ''
+            })
+                .subscribe(result => {
+                    this.loaded = true;
+                    this.elements = result.items;
+                    this.total = result.total;
+                    this.countOfPage = Math.floor(this.total / this.max);
+                });
+        } else {
+            // log service for component this.componentName is not available
+        }
     }
 
 }

@@ -1,6 +1,6 @@
 import { Component, Input, AfterViewInit, ViewChild, ComponentFactoryResolver, Type, ErrorHandler } from '@angular/core';
 import { ListelementDirective } from '../directives/listelement.directive';
-import ListElement from '../../interfaces/listelement';
+import { ListElement } from '../../interfaces/listelement';
 import { COMPONENTS } from '../../lists/listelements.conf';
 
 @Component({
@@ -20,7 +20,6 @@ export class ListelementComponent implements AfterViewInit {
     ngAfterViewInit() {
         const element = COMPONENTS.find(item => item.name === this.componentName);
         if (element) {
-
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(element.component);
             const viewContainerRef = this.listelementHost.viewContainerRef;
             viewContainerRef.clear();

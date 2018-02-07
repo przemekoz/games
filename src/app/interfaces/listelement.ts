@@ -1,3 +1,3 @@
-export default interface ListElement {
+export interface ListElement {
     data: any;
 }
