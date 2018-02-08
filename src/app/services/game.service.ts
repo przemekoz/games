@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Game, GameList } from '../interfaces/game';
 import { ListParam } from '../interfaces/listparam';
 import { ComponentListService } from '../interfaces/componentListService';
+import { BackendService } from '../_core/services/backend.service';
 
 @Injectable()
 export class GameService implements ComponentListService {
 
-    constructor(private http: HttpClient) { }
+    private games: Game[] = [];
 
-    getList(param: ListParam): Observable<GameList> {
-        const start = param.page * param.max;
-        const stop = start + param.max;
+    constructor(private backend: BackendService) { }
 
-        return of({ games: [], total: 0 });
+    getList(param: ListParam): Game[] {
+        this.backend.getAll('get/all', param)
+            .subscribe(
+
+            // this.games.push(...categories); // fill cache
+            );
+        return this.games;
     }
 
     getGame(id: string): Observable<Game> {

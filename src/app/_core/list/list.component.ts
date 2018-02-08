@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Type, ErrorHandler } from '@angular/core';
+import { Component, OnInit, Input, Type } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ListElement } from '../../interfaces/listelement';
 import { ListParam } from '../../interfaces/listparam';
 import { ComponentListService } from '../../interfaces/componentListService';
 import { COMPONENTS } from '../../lists/listelements.conf';
+import { LoggerService } from '../services/logger.service';
 
 @Component({
     selector: 'app-list',
@@ -25,7 +26,7 @@ export class ListComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private errorHandler: ErrorHandler) {
+        private logger: LoggerService) {
         route.params.subscribe(params => {
             this.getElements();
         });
@@ -42,11 +43,11 @@ export class ListComponent implements OnInit {
                 this.getElements();
             }
             else {
-                this.errorHandler.handleError(`Can't find element ${this.componentName} in listelements.conf`);
+                this.logger.log(`Can't find element ${this.componentName} in listelements.conf`);
             }
         }
         else {
-            this.errorHandler.handleError(`this.componentName is not set`);
+            this.logger.log(`this.componentName is not set`);
         }
     }
 
@@ -101,7 +102,7 @@ export class ListComponent implements OnInit {
                 });
         } else {
             // log
-            this.errorHandler.handleError(`service for component "${this.componentName}" is not available`);
+            this.logger.log(`service for component "${this.componentName}" is not available`);
         }
     }
 

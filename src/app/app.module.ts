@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -19,6 +18,8 @@ import { GamesListComponent } from './lists/gameslist.component';
 import { ListelementComponent } from './_core/listelement/listelement.component';
 
 import { ListelementDirective } from './_core/directives/listelement.directive';
+import { LoggerService } from './_core/services/logger.service';
+import { BackendService } from './_core/services/backend.service';
 
 @NgModule({
     declarations: [
@@ -36,12 +37,11 @@ import { ListelementDirective } from './_core/directives/listelement.directive';
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule,
         NoopAnimationsModule,
         AppMaterialModule,
         LayoutModule,
     ],
-    providers: [CategoryService, GameService],
+    providers: [CategoryService, GameService, LoggerService, BackendService],
     entryComponents: [GamelistComponent],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
