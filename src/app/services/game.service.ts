@@ -20,7 +20,7 @@ export class GameService implements ComponentList {
             // Cache exists
             return of({ items: this.games, total: this.games.length });
         } else {
-            this.backend.getAll('get/all', param)
+            this.backend.getAll('https://jsonplaceholder.typicode.com/albums', param)
                 .subscribe(response => {
                     this.games.push(...response.items);
                     return of({ items: this.games, total: this.games.length });
@@ -28,19 +28,19 @@ export class GameService implements ComponentList {
         }
     }
 
-    getGame(id: string): Observable<Game> {
-        return of({
-            id: '1',
-            name: 'name',
-            description: 'descrition',
-            created_at: {
-                date: '123123123',
-                timezone_type: 123,
-                timezone: 'pl'
-            },
-            enabled: true
-        });
-    }
+    // getGame(id: string): Observable<Game> {
+    //     return of({
+    //         id: '1',
+    //         name: 'name',
+    //         description: 'descrition',
+    //         created_at: {
+    //             date: '123123123',
+    //             timezone_type: 123,
+    //             timezone: 'pl'
+    //         },
+    //         enabled: true
+    //     });
+    // }
 
     searchGames(term: string): Observable<Game[]> {
         return of([]);

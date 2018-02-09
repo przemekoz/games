@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 
@@ -8,7 +8,7 @@ import { List } from '../../interfaces/list';
 @Injectable()
 export class BackendService {
 
-    constructor(private http: HttpClient) { }
+    // constructor(private http: HttpClient) { }
 
     // getAll(interfaceName): Observable<Game[]> {
     //     return this.http.get<List>(this.categoriesUrl, httpOptions)
@@ -17,7 +17,11 @@ export class BackendService {
     //         );
     // }
 
+    // getAll(url, params): Observable<List> {
+    //     return this.http.get<List>(url);
+    // }
+
     getAll(url, params): Observable<List> {
-        return this.http.get<List>(url);
+        return of({ items: [], total: 0 });
     }
 }

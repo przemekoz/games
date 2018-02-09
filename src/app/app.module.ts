@@ -3,6 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './components/categories/categories.component';
@@ -40,6 +41,7 @@ import { BackendService } from './_core/services/backend.service';
         NoopAnimationsModule,
         AppMaterialModule,
         LayoutModule,
+        HttpClientModule
     ],
     providers: [CategoryService, GameService, LoggerService, BackendService],
     entryComponents: [GamelistComponent],
