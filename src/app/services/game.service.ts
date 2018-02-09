@@ -3,25 +3,29 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Game, GameList } from '../interfaces/game';
-import { ListParam } from '../interfaces/listparam';
-import { ComponentListService } from '../interfaces/componentListService';
+import { Game } from '../interfaces/game';
+import { ListParam, List } from '../interfaces/list';
+import { ComponentList } from '../interfaces/componentList';
 import { BackendService } from '../_core/services/backend.service';
 
 @Injectable()
-export class GameService implements ComponentListService {
+export class GameService implements ComponentList {
 
     private games: Game[] = [];
 
     constructor(private backend: BackendService) { }
 
-    getList(param: ListParam): Game[] {
-        this.backend.getAll('get/all', param)
-            .subscribe(
-
-            // this.games.push(...categories); // fill cache
-            );
-        return this.games;
+    getList(param: ListParam): Observable<List> {
+        if (this.games.length) {
+            // Cache exists
+            return of({ items: this.games, total: this.games.length });
+        } else {
+            this.backend.getAll('get/all', param)
+                .subscribe(response => {
+                    this.games.push(...response.items);
+                    return of({ items: this.games, total: this.games.length });
+                });
+        }
     }
 
     getGame(id: string): Observable<Game> {

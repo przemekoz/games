@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Type } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ListElement } from '../../interfaces/listelement';
-import { ListParam } from '../../interfaces/listparam';
-import { ComponentListService } from '../../interfaces/componentListService';
+import { ListParam } from '../../interfaces/list';
+import { ComponentList } from '../../interfaces/componentList';
 import { COMPONENTS } from '../../lists/listelements.conf';
 import { LoggerService } from '../services/logger.service';
 
@@ -20,9 +19,9 @@ export class ListComponent implements OnInit {
     page: number;
     total: number;
     countOfPage: number;
-    elements: ListElement[];
+    items: any[];
     loaded: boolean;
-    service: ComponentListService;
+    service: ComponentList;
 
     constructor(
         private route: ActivatedRoute,
@@ -52,10 +51,8 @@ export class ListComponent implements OnInit {
     }
 
     first(): void {
-        if (this.page > 0) {
-            this.page = 0;
-            this.getElements();
-        }
+        this.page = 0;
+        this.getElements();
     }
 
     prev(): void {
@@ -73,17 +70,16 @@ export class ListComponent implements OnInit {
     }
 
     last(): void {
-        if (this.page < this.countOfPage) {
-            this.page = this.countOfPage;
-            this.getElements();
-        }
+        this.page = this.countOfPage;
+        this.getElements();
     }
 
     goToPage(): void {
-        if (this.page < 0 || this.page > this.countOfPage) {
-            this.page = 0;
+        if (this.page > -1 && this.page <= this.countOfPage) {
+            this.getElements();
+        } else {
+            // show error
         }
-        this.getElements();
     }
 
     getElements(): void {
@@ -96,7 +92,7 @@ export class ListComponent implements OnInit {
             })
                 .subscribe(result => {
                     this.loaded = true;
-                    this.elements = result.items;
+                    this.items = result.items;
                     this.total = result.total;
                     this.countOfPage = Math.floor(this.total / this.max);
                 });

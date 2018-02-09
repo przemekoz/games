@@ -1,6 +1,6 @@
 import { Component, Input, AfterViewInit, ViewChild, ComponentFactoryResolver, Type } from '@angular/core';
 import { ListelementDirective } from '../directives/listelement.directive';
-import { ListElement } from '../../interfaces/listelement';
+import { ListElement } from '../../interfaces/list';
 import { COMPONENTS } from '../../lists/listelements.conf';
 import { LoggerService } from '../services/logger.service';
 
@@ -16,7 +16,9 @@ export class ListelementComponent implements AfterViewInit {
     @Input() componentName: string;
     @ViewChild(ListelementDirective) listelementHost: ListelementDirective;
 
-    constructor(private componentFactoryResolver: ComponentFactoryResolver, private logger: LoggerService) { }
+    constructor(
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private logger: LoggerService) { }
 
     ngAfterViewInit() {
         const element = COMPONENTS.find(item => item.name === this.componentName);
@@ -27,7 +29,7 @@ export class ListelementComponent implements AfterViewInit {
             const componentRef = viewContainerRef.createComponent(componentFactory);
             (<ListElement>componentRef.instance).data = this.data;
         } else {
-            this.logger.log(`No configuration for component: ${this.componentName}`);
+            this.logger.log(`No configuration for component: "${this.componentName}"`);
         }
     }
 }
