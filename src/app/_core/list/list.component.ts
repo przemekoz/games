@@ -83,6 +83,7 @@ export class ListComponent implements OnInit {
     }
 
     getElements(): void {
+        console.log('.')
         if (this.service) {
             this.loaded = false;
             this.service.getList({

@@ -8,7 +8,7 @@ import { List } from '../../interfaces/list';
 @Injectable()
 export class BackendService {
 
-    // constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
     // getAll(interfaceName): Observable<Game[]> {
     //     return this.http.get<List>(this.categoriesUrl, httpOptions)
@@ -17,11 +17,8 @@ export class BackendService {
     //         );
     // }
 
-    // getAll(url, params): Observable<List> {
-    //     return this.http.get<List>(url);
-    // }
-
     getAll(url, params): Observable<List> {
-        return of({ items: [], total: 0 });
+        return this.http.get<List>(url);
+        //     return of({ items: [], total: 0 });
     }
 }

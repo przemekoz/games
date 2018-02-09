@@ -13,9 +13,12 @@ export class GameService implements ComponentList {
 
     private games: Game[] = [];
 
-    constructor(private backend: BackendService) { }
+    constructor(private backend: BackendService) {
+        console.log(this.backend)
+    }
 
     getList(param: ListParam): Observable<List> {
+        console.log(this.backend)
         if (this.games.length) {
             // Cache exists
             return of({ items: this.games, total: this.games.length });
