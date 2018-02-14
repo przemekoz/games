@@ -1,10 +1,6 @@
 export class Game {
     id: number;
-    title: string;
+    name: string;
+    description: string;
+    enabled: boolean;
 }
-// export class Game {
-//     id: string;
-//     name: string;
-//     description: string;
-//     enabled: boolean;
-// }

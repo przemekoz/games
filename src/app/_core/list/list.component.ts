@@ -5,6 +5,7 @@ import { ListParam } from '../../interfaces/list';
 import { ComponentList } from '../../interfaces/componentList';
 import { COMPONENTS } from '../../lists/listelements.conf';
 import { LoggerService } from '../services/logger.service';
+import { ListService } from '../../services/list.service';
 
 @Component({
     selector: 'app-list',
@@ -25,7 +26,8 @@ export class ListComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private logger: LoggerService) {
+        private logger: LoggerService,
+        private listService: ListService) {
         route.params.subscribe(params => {
             this.getElements();
         });
@@ -37,8 +39,8 @@ export class ListComponent implements OnInit {
     ngOnInit() {
         if (this.componentName) {
             const element = COMPONENTS.find(item => item.name === this.componentName);
-            if (element && element.service) {
-                this.service = new element.service;
+            if (element) {
+                this.service = this.listService.get(element.name);
                 this.getElements();
             }
             else {
@@ -83,7 +85,6 @@ export class ListComponent implements OnInit {
     }
 
     getElements(): void {
-        console.log('.')
         if (this.service) {
             this.loaded = false;
             this.service.getList({

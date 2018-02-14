@@ -3,7 +3,7 @@
         game image
     </span>
 
-    {{data.title}}
+    {{data.enabled | json}} {{data.title}} {{data.description}}
 
     <button routerLink="/game/{{data.id}}">play</button>
 </div>

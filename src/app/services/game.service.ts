@@ -13,17 +13,14 @@ export class GameService implements ComponentList {
 
     private games: Game[] = [];
 
-    constructor(private backend: BackendService) {
-        console.log(this.backend)
-    }
+    constructor(private backend: BackendService) { }
 
     getList(param: ListParam): Observable<List> {
-        console.log(this.backend)
         if (this.games.length) {
             // Cache exists
             return of({ items: this.games, total: this.games.length });
         } else {
-            this.backend.getAll('https://jsonplaceholder.typicode.com/albums', param)
+            this.backend.getAll('api/games', param)
                 .subscribe(response => {
                     this.games.push(...response.items);
                     return of({ items: this.games, total: this.games.length });
