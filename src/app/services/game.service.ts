@@ -7,25 +7,16 @@ import { Game } from '../interfaces/game';
 import { ListParam, List } from '../interfaces/list';
 import { ComponentList } from '../interfaces/componentList';
 import { BackendService } from '../_core/services/backend.service';
+import { CacheService } from '../_core/services/cache.service';
 
 @Injectable()
 export class GameService implements ComponentList {
 
-    private games: Game[] = [];
-
-    constructor(private backend: BackendService) { }
+    constructor(private backend: BackendService, private listCache: CacheService) { }
 
     getList(param: ListParam): Observable<List> {
-        if (this.games.length) {
-            // Cache exists
-            return of({ items: this.games, total: this.games.length });
-        } else {
-            this.backend.getAll('api/games', param)
-                .subscribe(response => {
-                    this.games.push(...response.items);
-                    return of({ items: this.games, total: this.games.length });
-                });
-        }
+        const observable = this.backend.getAll('api/games', param);
+        return this.listCache.get('gamesList', observable, param);
     }
 
     // getGame(id: string): Observable<Game> {

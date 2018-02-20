@@ -22,6 +22,7 @@ import { ListelementDirective } from './_core/directives/listelement.directive';
 import { LoggerService } from './_core/services/logger.service';
 import { BackendService } from './_core/services/backend.service';
 import { ListService } from './services/list.service';
+import { CacheService } from './_core/services/cache.service';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,7 @@ import { ListService } from './services/list.service';
         LayoutModule,
         HttpClientModule
     ],
-    providers: [CategoryService, GameService, LoggerService, BackendService, ListService],
+    providers: [CategoryService, GameService, LoggerService, BackendService, ListService, CacheService],
     entryComponents: [GamelistComponent],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
