@@ -42,12 +42,10 @@ export class ListComponent implements OnInit {
             if (element) {
                 this.service = this.listService.get(element.name);
                 this.getElements();
-            }
-            else {
+            } else {
                 this.logger.log(`Can't find element ${this.componentName} in listelements.conf`);
             }
-        }
-        else {
+        } else {
             this.logger.log(`this.componentName is not set`);
         }
     }
@@ -91,15 +89,13 @@ export class ListComponent implements OnInit {
                 max: this.max,
                 page: this.page,
                 sort: ''
-            })
-                .subscribe(result => {
-                    this.loaded = true;
-                    this.items = result.items;
-                    this.total = result.total;
-                    this.countOfPage = Math.floor(this.total / this.max);
-                });
+            }).subscribe(result => {
+                this.loaded = true;
+                this.items = result.items;
+                this.total = result.total;
+                this.countOfPage = Math.floor(this.total / this.max);
+            });
         } else {
-            // log
             this.logger.log(`service for component "${this.componentName}" is not available`);
         }
     }

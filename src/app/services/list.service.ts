@@ -20,10 +20,9 @@ export class ListService {
         const elem = this.servicesMap.find(item => item.name === name);
         if (elem) {
             return elem.service;
-        }
-        else {
+        } else {
             this.logger.log(`ListService - Can't find service for name: ${name}`);
-            return of({ items: [], total: 0 });
+            return null;
         }
     }
 }

@@ -14,7 +14,7 @@ interface CacheItem {
 @Injectable()
 export class CacheService {
 
-    private lifetime = 30 * 60000; // 30 minutes
+    private lifetime = 15 * 60000; // 15 minutes
 
     private cache: CacheItem[] = [];
 
@@ -44,8 +44,8 @@ export class CacheService {
             return of(this.getResult(cacheItem));
         } else {
             observable.subscribe(response => {
-                cacheItem = this.prepare(key, this.getId(params), response);
                 this.removeOld();
+                cacheItem = this.prepare(key, this.getId(params), response);
                 this.cache.push(cacheItem);
                 return of(this.getResult(cacheItem));
             });
@@ -70,46 +70,10 @@ export class CacheService {
     }
 
     private parseListParams(params: ListParam): string {
-        return 'some of string';
+        return 'page=' + params.page +
+            ',max=' + params.max +
+            ',sort' + params.sort;
     }
 
-    /*
-    offset=0 limit=20
-        games.slice(0, 0 * 20 + 20)
-    
-    offset=5 limit=20
-        games.slice(5*20, 5*20 + 20)
-    
-    offset=2 limit=5
-        games.slice(2*5, 2*5 + 5)
-    
-    let start = offset * limit;
-    games.slice(start, start + limit)
-    
-    */
-
-    /*
-    offset=0&limit=20
-        {1,'a'}
-        {2,'b'}
-        {3,'c'}
-        {5,'e'}
-        {7,'h'}
-    
-    offset=0&limit=20&sort=+title
-        {15,'z'}
-        {2,'b'}
-        {3,'c'}
-        {1,'a'}
-        {7,'h'}
-    
-    offset=1&limit=20&sort=+title
-        {8,'k'}
-        {10,'n'}
-        {11,'m'}
-        {17,'o'}
-        {22,'y'}
-    
-    */
     constructor() { }
 }
