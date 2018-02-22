@@ -6,8 +6,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Game } from '../interfaces/game';
 import { ListParam, List } from '../interfaces/list';
 import { ComponentList } from '../interfaces/componentList';
-import { BackendService } from '../_core/services/backend.service';
-import { CacheService } from '../_core/services/cache.service';
+import { BackendService } from '../core/services/backend.service';
+import { CacheService } from '../core/services/cache.service';
 
 @Injectable()
 export class GameService implements ComponentList {

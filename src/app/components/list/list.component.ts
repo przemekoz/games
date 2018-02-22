@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ListAbstract } from '../../_core/list/list.abstract.class';
-import { LoggerService } from '../../_core/services/logger.service';
+import { ListAbstract } from '../../core/list/list.abstract.class';
+import { LoggerService } from '../../core/services/logger.service';
 import { ListService } from '../../services/list.service';
 
 @Component({

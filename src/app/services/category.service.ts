@@ -3,7 +3,7 @@ import { Category } from '../interfaces/category';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
-import { BackendService } from '../_core/services/backend.service';
+import { BackendService } from '../core/services/backend.service';
 
 @Injectable()
 export class CategoryService {

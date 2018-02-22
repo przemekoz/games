@@ -16,13 +16,13 @@ import { ListComponent } from './components/list/list.component';
 import { GameSearchComponent } from './components/game-search/game-search.component';
 import { AppMaterialModule } from './app-material.module';
 import { GamesListComponent } from './lists/gameslist.component';
-import { ListelementComponent } from './_core/listelement/listelement.component';
+import { ListelementComponent } from './core/listelement/listelement.component';
 
-import { ListelementDirective } from './_core/directives/listelement.directive';
-import { LoggerService } from './_core/services/logger.service';
-import { BackendService } from './_core/services/backend.service';
+import { ListelementDirective } from './core/directives/listelement.directive';
+import { LoggerService } from './core/services/logger.service';
+import { BackendService } from './core/services/backend.service';
 import { ListService } from './services/list.service';
-import { CacheService } from './_core/services/cache.service';
+import { CacheService } from './core/services/cache.service';
 
 @NgModule({
     declarations: [

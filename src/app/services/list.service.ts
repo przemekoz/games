@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { ListServiceMap } from '../interfaces/list';
-import { LoggerService } from '../_core/services/logger.service';
+import { LoggerService } from '../core/services/logger.service';
 import { of } from 'rxjs/observable/of';
 
 @Injectable()
