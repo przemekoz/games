@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Type } from '@angular/core';
+import { Input, Type } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ListParam } from '../../interfaces/list';
@@ -7,12 +7,7 @@ import { COMPONENTS } from '../../lists/listelements.conf';
 import { LoggerService } from '../services/logger.service';
 import { ListService } from '../../services/list.service';
 
-@Component({
-    selector: 'app-list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.scss']
-})
-export class ListComponent implements OnInit {
+export class ListAbstract {
 
     @Input() componentName: string;
 
@@ -25,9 +20,9 @@ export class ListComponent implements OnInit {
     service: ComponentList;
 
     constructor(
-        private route: ActivatedRoute,
-        private logger: LoggerService,
-        private listService: ListService) {
+        protected route: ActivatedRoute,
+        protected logger: LoggerService,
+        protected listService: ListService) {
         route.params.subscribe(params => {
             this.getElements();
         });
@@ -36,7 +31,7 @@ export class ListComponent implements OnInit {
         this.loaded = false;
     }
 
-    ngOnInit() {
+    onInit(): void {
         if (this.componentName) {
             const element = COMPONENTS.find(item => item.name === this.componentName);
             if (element) {
@@ -99,11 +94,10 @@ export class ListComponent implements OnInit {
                 this.loaded = true;
                 this.items = result.items;
                 this.total = result.total;
-                this.totalPages = Math.floor(this.total / this.max);
+                this.totalPages = Math.ceil(this.total / this.max);
             });
         } else {
             this.logger.log(`service for component "${this.componentName}" is not available`);
         }
     }
-
 }

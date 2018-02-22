@@ -12,7 +12,7 @@ import { GameService } from './services/game.service';
 import { GameviewComponent } from './components/gameview/gameview.component';
 import { GamelistComponent } from './components/gamelist/gamelist.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ListComponent } from './_core/list/list.component';
+import { ListComponent } from './components/list/list.component';
 import { GameSearchComponent } from './components/game-search/game-search.component';
 import { AppMaterialModule } from './app-material.module';
 import { GamesListComponent } from './lists/gameslist.component';
