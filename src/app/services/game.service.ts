@@ -17,7 +17,6 @@ export class GameService implements ComponentList {
     getList(param: ListParam): Observable<List> {
         console.log('game.service: getList', param)
         const observable = this.backend.getAll('api/games', param);
-        console.log(typeof observable)
         return this.listCache.get('gamesList', observable, param);
     }
 

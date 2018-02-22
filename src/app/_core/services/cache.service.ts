@@ -14,12 +14,16 @@ interface CacheItem {
 @Injectable()
 export class CacheService {
 
-    private lifetime = 3 * 60000; // 3 minutes
+    private lifetime = 5 * 60000; // 5 minutes
 
     private cache: CacheItem[] = [];
 
     private find(key: string, params: ListParam | string): CacheItem {
-        return this.cache.find(item => item.key === key && this.isActive(item));
+        return this.cache.find(item =>
+            item.key === key &&
+            this.isActive(item) &&
+            item.id === this.getId(params)
+        );
     }
 
     private isActive(item: CacheItem): boolean {
@@ -45,7 +49,7 @@ export class CacheService {
     get(key: string, observable, params: ListParam | string): Observable<List> | any {
         let cacheItem = this.find(key, params);
         if (cacheItem) {
-            console.log('cache.service: found: ', cacheItem)
+            console.log('cache.service: found: ', cacheItem, params)
             return of(this.getResult(cacheItem));
         } else {
             console.log('cache.service: ->request...')

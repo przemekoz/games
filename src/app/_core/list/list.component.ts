@@ -19,7 +19,7 @@ export class ListComponent implements OnInit {
     max: number;
     page: number;
     total: number;
-    countOfPage: number;
+    totalPages: number;
     items: any[];
     loaded: boolean;
     service: ComponentList;
@@ -56,26 +56,26 @@ export class ListComponent implements OnInit {
     }
 
     prev(): void {
-        if (this.page > 1) {
+        if (this.page > 0) {
             this.page--;
             this.getElements();
         }
     }
 
     next(): void {
-        if (this.page < this.countOfPage) {
+        if (this.page < this.totalPages) {
             this.page++;
             this.getElements();
         }
     }
 
     last(): void {
-        this.page = this.countOfPage;
+        this.page = this.totalPages;
         this.getElements();
     }
 
     goToPage(): void {
-        if (this.page > -1 && this.page <= this.countOfPage) {
+        if (this.page > -1 && this.page <= this.totalPages) {
             this.getElements();
         } else {
             // show error
@@ -99,7 +99,7 @@ export class ListComponent implements OnInit {
                 this.loaded = true;
                 this.items = result.items;
                 this.total = result.total;
-                this.countOfPage = Math.floor(this.total / this.max);
+                this.totalPages = Math.floor(this.total / this.max);
             });
         } else {
             this.logger.log(`service for component "${this.componentName}" is not available`);
