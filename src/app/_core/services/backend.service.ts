@@ -22,6 +22,7 @@ export class BackendService {
 
         // Mock
         if (url === 'api/games') {
+            console.log('backend.service: getAll', url, params)
             return of({ items: games, total: games.length }).delay(this.delayMs);
         }
         else {

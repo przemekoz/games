@@ -84,12 +84,18 @@ export class ListComponent implements OnInit {
 
     getElements(): void {
         if (this.service) {
+            console.log('list.component, getElements', {
+                max: this.max,
+                page: this.page,
+                sort: ''
+            })
             this.loaded = false;
             this.service.getList({
                 max: this.max,
                 page: this.page,
                 sort: ''
             }).subscribe(result => {
+                console.log('list.component, getElements ->reponse:', result);
                 this.loaded = true;
                 this.items = result.items;
                 this.total = result.total;
