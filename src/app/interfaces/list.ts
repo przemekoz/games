@@ -1,9 +1,3 @@
-import { ComponentList } from "./componentList";
-
-export interface ListElement {
-    data: any;
-}
-
 export interface ListParam {
     max: number;
     page: number;
@@ -13,9 +7,4 @@ export interface ListParam {
 export interface List {
     total: number;
     items: any[];
-}
-
-export interface ListServiceMap {
-    name: string;
-    service: ComponentList;
 }

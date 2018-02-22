@@ -70,7 +70,7 @@ export class CacheService {
             created: Date.now(),
             item: result.items ? result.items : result.item,
             total: result.total ? result.total : null
-        }
+        };
     }
 
     private getId(params: ListParam | string): string {

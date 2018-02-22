@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ListComponent } from './core/list/list.component';
 import { GameviewComponent } from './components/gameview/gameview.component';
-import { GamesListComponent } from './lists/gameslist.component';
+import { GamesListComponent } from './components/gameslist/gameslist.component';
 
 const routes: Routes = [
     // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -15,6 +14,4 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule { }

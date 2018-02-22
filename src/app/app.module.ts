@@ -10,18 +10,13 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CategoryService } from './services/category.service';
 import { GameService } from './services/game.service';
 import { GameviewComponent } from './components/gameview/gameview.component';
-import { GamelistComponent } from './components/gamelist/gamelist.component';
+import { GamesListComponent } from './components/gameslist/gameslist.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ListComponent } from './components/list/list.component';
 import { GameSearchComponent } from './components/game-search/game-search.component';
 import { AppMaterialModule } from './app-material.module';
-import { GamesListComponent } from './lists/gameslist.component';
-import { ListelementComponent } from './core/listelement/listelement.component';
 
-import { ListelementDirective } from './core/directives/listelement.directive';
 import { LoggerService } from './core/services/logger.service';
 import { BackendService } from './core/services/backend.service';
-import { ListService } from './services/list.service';
 import { CacheService } from './core/services/cache.service';
 
 @NgModule({
@@ -29,12 +24,9 @@ import { CacheService } from './core/services/cache.service';
         AppComponent,
         CategoriesComponent,
         GameviewComponent,
-        GamelistComponent,
-        ListComponent,
-        GameSearchComponent,
         GamesListComponent,
-        ListelementComponent,
-        ListelementDirective
+        GameSearchComponent,
+        GamesListComponent
     ],
     imports: [
         BrowserModule,
@@ -45,8 +37,8 @@ import { CacheService } from './core/services/cache.service';
         LayoutModule,
         HttpClientModule
     ],
-    providers: [CategoryService, GameService, LoggerService, BackendService, ListService, CacheService],
-    entryComponents: [GamelistComponent],
+    providers: [CategoryService, GameService, LoggerService, BackendService, CacheService],
+    entryComponents: [GamesListComponent],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

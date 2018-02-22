@@ -31,8 +31,8 @@ export class GameviewComponent implements OnInit {
     getGame(): void {
         // Get game from url id
         const id = this.route.snapshot.paramMap.get('id');
-        // this.gameService.getGame(id)
-        //     .subscribe(game => this.game = game);
+        this.gameService.getGame(id)
+            .subscribe(game => this.game = game);
     }
 
     goBack(): void {

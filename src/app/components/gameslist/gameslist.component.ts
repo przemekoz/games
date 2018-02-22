@@ -3,18 +3,18 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ListAbstract } from '../../core/list/list.abstract.class';
 import { LoggerService } from '../../core/services/logger.service';
-import { ListService } from '../../services/list.service';
+import { GameService } from '../../services/game.service';
 
 @Component({
     selector: 'app-list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.scss']
+    templateUrl: './gameslist.component.html',
+    styleUrls: ['./gameslist.component.scss']
 })
-export class ListComponent extends ListAbstract implements OnInit {
+export class GamesListComponent extends ListAbstract implements OnInit {
 
     constructor(protected route: ActivatedRoute,
         protected logger: LoggerService,
-        protected listService: ListService) {
+        protected listService: GameService) {
         super(route, logger, listService);
     }
 

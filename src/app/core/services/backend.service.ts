@@ -5,6 +5,7 @@ import 'rxjs/add/operator/delay';
 import { Observable } from 'rxjs/Observable';
 
 import { List } from '../../interfaces/list';
+import { Game } from '../../interfaces/game';
 
 // Mock
 import { games } from '../../mock-data-model';
@@ -13,7 +14,7 @@ import { games } from '../../mock-data-model';
 export class BackendService {
 
     // Mock
-    private delayMs: number = 700; // miliseconds
+    private delayMs = 700; // miliseconds
 
     constructor(private http: HttpClient) { }
 
@@ -24,11 +25,18 @@ export class BackendService {
         if (url === 'api/games') {
             console.log('backend.service: getAll', url, params)
             return of({ items: games, total: 25 }).delay(this.delayMs);
-        }
-        else {
+        } else {
             return of({ items: [], total: 0 }).delay(this.delayMs);
         }
-
-        // return this.http.get<List>(url);
     }
+
+    get(url, id): Observable<Game> {
+        return of({
+            id: 1,
+            name: 'name',
+            description: 'descrition',
+            enabled: true
+        }).delay(this.delayMs);
+    }
+    // return this.http.get<List>(url);
 }

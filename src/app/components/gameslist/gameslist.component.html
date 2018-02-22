@@ -1,7 +1,13 @@
 {{title}}
 
-<div *ngFor="let element of items" class="container" style="width: 100%">
-    <app-listelement componentName="game" [data]="element"></app-listelement>
+<div *ngFor="let item of items" class="container" style="width: 100%">
+    <div>
+        <span class="image-placeholder">
+            game image
+        </span>
+        {{item.enabled | json}} {{item.title}} {{item.description}}
+        <button routerLink="/game/{{item.id}}">play</button>
+    </div>
 </div>
 
 <div class="container" style="width: 100%">

@@ -15,24 +15,16 @@ export class GameService implements ComponentList {
     constructor(private backend: BackendService, private listCache: CacheService) { }
 
     getList(param: ListParam): Observable<List> {
-        console.log('game.service: getList', param)
+        console.log('game.service: getList', param);
         const observable = this.backend.getAll('api/games', param);
         return this.listCache.get('gamesList', observable, param);
     }
 
-    // getGame(id: string): Observable<Game> {
-    //     return of({
-    //         id: '1',
-    //         name: 'name',
-    //         description: 'descrition',
-    //         created_at: {
-    //             date: '123123123',
-    //             timezone_type: 123,
-    //             timezone: 'pl'
-    //         },
-    //         enabled: true
-    //     });
-    // }
+    getGame(id: string): Observable<Game> {
+        console.log('game.service: getGame', id);
+        const observable = this.backend.getAll('api/game', id);
+        return this.listCache.get('game', observable, id);
+    }
 
     searchGames(term: string): Observable<Game[]> {
         return of([]);
