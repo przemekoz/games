@@ -13,7 +13,7 @@ import { games } from '../../mock-data-model';
 export class BackendService {
 
     // Mock
-    private delayMs: number = 700;
+    private delayMs: number = 1500; // miliseconds
 
     constructor(private http: HttpClient) { }
 
@@ -23,7 +23,7 @@ export class BackendService {
         // Mock
         if (url === 'api/games') {
             console.log('backend.service: getAll', url, params)
-            return of({ items: games, total: games.length }).delay(this.delayMs);
+            return of({ items: games, total: 101 }).delay(this.delayMs);
         }
         else {
             return of({ items: [], total: 0 }).delay(this.delayMs);

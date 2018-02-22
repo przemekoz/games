@@ -23,11 +23,11 @@ export class CacheService {
     }
 
     private isActive(item: CacheItem): boolean {
-        return item.created < Date.now() - this.lifetime;
+        return item.created + this.lifetime > Date.now();
     }
 
     private removeOld(): void {
-        const found = this.cache.filter(item => this.isActive(item));
+        const found = this.cache.filter(item => this.isActive(item) === false);
         found.forEach(item => {
             this.cache.splice(this.cache.indexOf(item), 1);
         });
